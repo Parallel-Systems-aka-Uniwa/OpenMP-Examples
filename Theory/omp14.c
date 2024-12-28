@@ -13,16 +13,17 @@ chunk = 2;
   tid = omp_get_thread_num();
   
   /* Αρχικοποιήσεις των πινάκων */
-
   #pragma omp for schedule (static, chunk) 
-   for (i=0; i<N; i++)
+   for (i=0; i<N; i++) {
      for (j=0; j<N; j++)
-       a[i][j]= i+j;
-  
+     {  a[i][j]= i+j; printf("%f ", a[i][j]); }
+   printf("\n"); }
+   
   #pragma omp for schedule (static, chunk)
-   for (i=0; i<N; i++)
-     for (j=0; j<N; j++)
-       b[i][j]= i*j;
+   for (i=0; i<N; i++) {
+     for (j=0; j<N; j++) {
+	 b[i][j]= i*j; printf("%f ", b[i][j]);}
+   printf("\n");}
   
   #pragma omp for schedule (static, chunk)
    for (i=0; i<N; i++)
